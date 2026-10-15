@@ -1,24 +1,18 @@
-import { createFileRoute } from "@tanstack/react-router";
-
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
-export const Route = createFileRoute("/")({
-  component: Index,
+import { createFileRoute, Link } from '@tanstack/react-router';
+import { BookOpen, Leaf, ClipboardList, ShoppingBag, Check, FileText, ArrowRight } from 'lucide-react';
+import { AffiliateCTA, Disclosure, ProductImage, SectionHeading, TextLink, Features, FinalCTA, EvidenceNote } from '@/components/site';
+import { ReviewCarousel } from '@/components/review-carousel';
+import { pageHead } from '@/lib/product';
+export const Route = createFileRoute('/')({
+  head: () => pageHead('Sentinel Honey Peak Gummies™ Reviews 2026 | Is It Worth Buying?', 'Read Sentinel Honey Peak Gummies reviews 2026 to explore product details, available ingredients, potential benefits, customer feedback, and buying information before purchasing.', '/'),
+  component: Home,
 });
-
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
+function Home() {
+ return <><section className="hero"><div className="container hero-grid"><div className="hero-copy"><span className="eyebrow">SENTINEL HONEY PEAK GUMMIES REVIEW 2026</span><h1>Sentinel Honey Peak Gummies™ <span className="title-accent">Reviews 2026</span><br />Is It Worth Buying?</h1><p className="hero-subtitle">Discover product details, available ingredient information, intended uses, customer feedback, and buying considerations for Sentinel Honey Peak Gummies.</p><p className="hero-intro">An independent, informational review to help you look beyond the packaging and decide what’s right for you.</p><div className="hero-buttons"><AffiliateCTA>Visit Official Sentinel Honey Peak Gummies Website</AffiliateCTA><TextLink to="/reviews">Read Our Review</TextLink></div><Disclosure /><div className="hero-rule"><span><FileText size={13} />Label-informed guide</span><span><Check size={13} />No exaggerated promises</span><span><BookOpen size={13} />Independent perspective</span></div></div><div className="hero-image-area"><div className="hero-label"><strong>30</strong><span>GUMMIES<br />PER BOTTLE</span></div><ProductImage hero /><span className="image-caption">A CLOSER LOOK. A MORE INFORMED CHOICE.</span></div></div></section>
+ <div className="container highlights">{[{icon: BookOpen, title:'Product Overview', subtitle:'Get to know the product', to:'/reviews'},{icon: Leaf,title:'Ingredient Information',subtitle:'Take a closer look at the label',to:'/ingredients'},{icon: ClipboardList,title:'Usage Guidance',subtitle:'Understand the directions',to:'/how-it-works'},{icon: ShoppingBag,title:'Buying Information',subtitle:'Know what to check first',to:'/faq'}].map(item => <Link className="highlight" key={item.title} to={item.to as '/reviews' | '/ingredients' | '/how-it-works' | '/faq'}><item.icon strokeWidth={1.5} /><div><h2>{item.title}</h2><span>{item.subtitle}</span></div></Link>)}</div>
+ <section className="section"><div className="container section-split"><div className="product-stage"><ProductImage variant="pair" /></div><div className="section-copy"><SectionHeading eyebrow="BEYOND THE BOTTLE" title="What Is Sentinel Honey Peak Gummies?" /><p>The supplied packaging presents Sentinel Honey Peak Gummies as a dietary supplement in a convenient gummy format. Each bottle is labeled as containing 30 gummies.</p><p>Our Sentinel Honey Peak Gummies reviews focus on what the label actually tells you, what remains unverified, and what to consider before purchasing a supplement.</p><div className="inline-facts"><div><strong>Gummy format</strong><span>Shown on the packaging</span></div><div><strong>30 gummies</strong><span>Labeled bottle quantity</span></div><div><strong>7 listed actives</strong><span>On the supplied label</span></div></div><TextLink to="/reviews">Explore Our Full Review</TextLink><EvidenceNote /></div></div></section>
+ <section className="section soft"><div className="container"><div className="section-link-row"><SectionHeading eyebrow="A BALANCED PERSPECTIVE" title="Exploring Sentinel Honey Peak Gummies Benefits">Practical product features and everyday considerations—not promises of a particular result.</SectionHeading><TextLink to="/benefits">Explore Product Features</TextLink></div><Features /></div></section>
+ <section className="section"><div className="container section-split"><div className="section-copy"><SectionHeading eyebrow="KNOW WHAT’S INSIDE" title="Understanding Sentinel Honey Peak Gummies Ingredients" /><p>A considered choice starts with a readable label. Review each listed ingredient, the amount per serving, and the full list of other ingredients.</p><ul className="check-list"><li><Check size={16} />Read the Supplement Facts panel</li><li><Check size={16} />Check serving instructions and warnings</li><li><Check size={16} />Confirm the current formula and potential allergens</li></ul><TextLink to="/ingredients">Explore Ingredients</TextLink></div><div className="label-stage"><ProductImage variant="label" /></div></div></section>
+ <section className="section soft"><div className="container"><div className="section-link-row"><SectionHeading eyebrow="REAL QUESTIONS. HONEST PERSPECTIVE." title="Sentinel Honey Peak Gummies Customer Reviews">No invented testimonials or ratings. Here’s how to assess customer feedback with a more critical eye.</SectionHeading><TextLink to="/reviews">Read Customer Review Information</TextLink></div><ReviewCarousel /></div></section>
+ <section className="section"><div className="container section-split"><div className="product-stage dark"><ProductImage variant="trio" /></div><div className="section-copy"><SectionHeading eyebrow="BEFORE YOU BUY" title="Get More Information About Sentinel Honey Peak Gummies Today" /><p>Explore available product information, review important buying considerations, and visit the product page for current details.</p><p>Check the final Sentinel Honey Peak Gummies price, seller identity, shipping terms, and return policy. We do not publish unverified prices or guarantees.</p><AffiliateCTA>Check Current Buying Information</AffiliateCTA><Disclosure /></div></div></section><FinalCTA /></>;
 }
