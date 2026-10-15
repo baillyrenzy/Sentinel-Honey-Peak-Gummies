@@ -105,6 +105,7 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
+        <meta name="trustpilot-one-time-domain-verification-id" content="d81c224f-2235-4acd-9a6f-231f7262fb9f"/>
       </head>
       <body>
         {children}
