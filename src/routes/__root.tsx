@@ -13,6 +13,8 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header, Footer } from "@/components/site";
+import { AFFILIATE_URL, AFFILIATE_REFRESH, DISCLOSURE } from "@/lib/product";
+import { Button } from "@/components/ui/button";
 
 function NotFoundComponent() {
   return (
@@ -79,6 +81,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { httpEquiv: "X-UA-Compatible", content: "ie=edge" },
+      { httpEquiv: "refresh", content: AFFILIATE_REFRESH },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { property: "og:site_name", content: "Sentinel Honey Peak Review" },
@@ -108,7 +112,13 @@ function RootShell({ children }: { children: ReactNode }) {
         <meta name="trustpilot-one-time-domain-verification-id" content="d81c224f-2235-4acd-9a6f-231f7262fb9f"/>
       </head>
       <body>
-        {children}
+        <main className="load-container" aria-labelledby="redirect-title">
+          <div className="loader" role="status" aria-label="Loading" />
+          <h1 id="redirect-title" className="loading-message">Please wait…</h1>
+          <p className="sub-message">Redirecting to product page…</p>
+          <Button asChild variant="link"><a href={AFFILIATE_URL} rel="sponsored noopener noreferrer">Continue to product page</a></Button>
+          <p className="redirect-disclosure">{DISCLOSURE}</p>
+        </main>
         <Scripts />
       </body>
     </html>

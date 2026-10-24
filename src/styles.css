@@ -46,7 +46,15 @@
   --hero-wash: linear-gradient(115deg, var(--background) 25%, var(--secondary) 100%);
   --image-shadow: 0 22px 38px -26px color-mix(in oklab, var(--foreground) 30%, transparent);
   --card-shadow: 0 9px 26px -18px color-mix(in oklab, var(--foreground) 16%, transparent);
+  --redirect-background: #F1F1EA;
+  --redirect-loader: #46A4C9;
 }
+.load-container { background: var(--redirect-background); width: 100%; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; align-items: center; box-sizing: border-box; padding: 48px 20px; text-align: center; }
+.loader { font-size: 10px; margin: 40px 10px; width: 2em; height: 2em; flex-shrink: 0; border-radius: 50%; position: relative; box-shadow: 0 -3em 0 .2em var(--redirect-loader), 2em -2em 0 0 var(--redirect-loader), 3em 0 0 -.5em var(--redirect-loader), 2em 2em 0 -.5em var(--redirect-loader), 0 3em 0 -.5em var(--redirect-loader), -2em 2em 0 -.5em var(--redirect-loader), -3em 0 0 -.5em var(--redirect-loader), -2em -2em 0 0 var(--redirect-loader); animation: redirect-spin 1.3s infinite linear; }
+.loading-message { font-size: 24px; margin: 20px; }
+.sub-message { font-size: 18px; margin: 10px; }
+.redirect-disclosure { max-width: 560px; font-size: 12px; color: var(--muted-foreground); margin: 20px 0 0; }
+@keyframes redirect-spin { to { transform: rotate(360deg); } }
 @layer base {
   * { border-color: var(--border); }
   html { scroll-behavior: smooth; }
