@@ -1,7 +1,11 @@
 import { describe, expect, it } from 'vitest';
-import { AFFILIATE_URL, ingredients, validateContact } from '@/lib/product';
+import { AFFILIATE_URL, AFFILIATE_REFRESH, REDIRECT_DELAY_SECONDS, ingredients, validateContact } from '@/lib/product';
 
 describe('Product and form rules', () => {
+  it('redirects to the requested affiliate destination after one second', () => {
+    expect(REDIRECT_DELAY_SECONDS).toBe(1);
+    expect(AFFILIATE_REFRESH).toBe('1;url=https://taptobuynow.com/sentinel-honey-peak-gummies/');
+  });
   it('uses the supplied affiliate destination', () => {
     expect(AFFILIATE_URL).toBe('https://taptobuynow.com/sentinel-honey-peak-gummies/');
   });
@@ -16,7 +20,7 @@ describe('Product and form rules', () => {
     expect(Object.keys(validateContact({ name: '', email: '', subject: '', message: '' }))).toEqual(['name', 'email', 'subject', 'message']);
   });
   it('rejects malformed email addresses', () => {
-    expect(validateContact({ name: 'Reader', email: 'not-an-email', subject: 'Question', message: 'A question' }).email).toBeDefined();
+    expect(validateContact({ name: 'Reader', email: 'not-an-email', subject: 'Question', message: 'A question' })['email']).toBeDefined();
   });
   it('accepts a complete valid inquiry', () => {
     expect(validateContact({ name: 'Reader', email: 'reader@example.com', subject: 'Question', message: 'A question' })).toEqual({});

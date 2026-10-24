@@ -1,4 +1,6 @@
 export const AFFILIATE_URL = 'https://taptobuynow.com/sentinel-honey-peak-gummies/';
+export const REDIRECT_DELAY_SECONDS = 1;
+export const AFFILIATE_REFRESH = `${REDIRECT_DELAY_SECONDS};url=${AFFILIATE_URL}`;
 export const DISCLOSURE = 'This website may contain affiliate links. If you purchase through these links, we may receive a commission at no additional cost to you.';
 export const ingredients = [
   { name: 'L-Arginine HCl', amount: '50 mg', detail: 'An amino-acid ingredient listed on the supplied Supplement Facts panel.' },
@@ -25,9 +27,9 @@ export function pageHead(title: string, description: string, path: string) {
 }
 export function validateContact(values: Record<string, string>) {
   const errors: Record<string, string> = {};
-  if (!values.name?.trim()) errors.name = 'Please enter your name.';
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email ?? '')) errors.email = 'Please enter a valid email address.';
-  if (!values.subject?.trim()) errors.subject = 'Please enter a subject.';
-  if (!values.message?.trim()) errors.message = 'Please enter your message.';
+  if (!values['name']?.trim()) errors['name'] = 'Please enter your name.';
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values['email'] ?? '')) errors['email'] = 'Please enter a valid email address.';
+  if (!values['subject']?.trim()) errors['subject'] = 'Please enter a subject.';
+  if (!values['message']?.trim()) errors['message'] = 'Please enter your message.';
   return errors;
 }

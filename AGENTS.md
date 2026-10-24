@@ -10,6 +10,7 @@
 <!-- LOVABLE:END -->
 
 ## Application structure
+- The root shell renders the affiliate waiting screen and declares the timed redirect in head metadata; retained content routes keep their individual metadata for consistent direct URLs.
 - Use TanStack file routes for every public page and route-local head metadata; shared navigation and footer live in the root shell so direct navigation remains consistent.
 - Keep affiliate destinations, label transcriptions, and contact validation in a shared browser-safe product module to make content rules consistent and testable.
 - Render supplied media through CDN asset pointers and the shared linked ProductImage component so proportions, loading behavior, and affiliate attribution stay consistent.
